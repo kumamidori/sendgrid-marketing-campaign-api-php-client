@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient;
 
-use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
@@ -30,6 +30,16 @@ readonly class SendgridApiRequester
         $this->serializer = $serializer ?? (new SerializerFactory())->create();
     }
 
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $responseClass
+     *
+     * @return T
+     *
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
+     */
     public function get(string $path, string $responseClass)
     {
         try {
