@@ -19,6 +19,7 @@ interface ClientInterface
 {
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Create-a-List-POST
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -26,6 +27,7 @@ interface ClientInterface
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-POST
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -33,6 +35,7 @@ interface ClientInterface
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-to-a-List-POST
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -40,6 +43,7 @@ interface ClientInterface
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Create-a-Campaign-POST
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -47,6 +51,7 @@ interface ClientInterface
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Send-a-Campaign-POST
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */

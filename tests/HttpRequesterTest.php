@@ -43,10 +43,10 @@ class HttpRequesterTest extends TestCase
             CreateContactListResponse::class,
         );
 
-        $this->assertTrue($actual instanceof CreateContactListResponse);
-        $this->assertEquals(1, $actual->id);
-        $this->assertEquals('dummy-name', $actual->name);
-        $this->assertEquals(0, $actual->recipientCount);
+        $this->assertInstanceOf(CreateContactListResponse::class, $actual);
+        $this->assertSame(1, $actual->id);
+        $this->assertSame('dummy-name', $actual->name);
+        $this->assertSame(0, $actual->recipientCount);
     }
 
     public function testPostClientError(): void
