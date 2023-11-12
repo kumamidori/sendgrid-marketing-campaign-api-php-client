@@ -22,12 +22,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class HttpRequesterTest extends TestCase
 {
     private MockObject&ClientInterface $guzzleClientMock;
-    private SerializerInterface $serializer;
 
     protected function setUp(): void
     {
         $this->guzzleClientMock = $this->createMock(ClientInterface::class);
-        $this->serializer = (new SerializerFactory())->create();
     }
 
     public function testPost(): void
@@ -37,7 +35,7 @@ class HttpRequesterTest extends TestCase
             ->with('POST', '/dummy/path', [
                 'body' => '{"name":"dummy-name"}',
             ])
-            ->willReturn(new Response(body: json_encode(['id' => 1, 'name' => 'dummy-name', 'recipient_count' => 0])))
+            ->willReturn(new Response(body: (string) json_encode(['id' => 1, 'name' => 'dummy-name', 'recipient_count' => 0])))
         ;
 
         /** @var CreateContactListResponse $actual */
@@ -89,7 +87,6 @@ class HttpRequesterTest extends TestCase
     {
         return new HttpRequester(
             $this->guzzleClientMock,
-            $this->serializer,
         );
     }
 }

@@ -18,20 +18,20 @@ readonly class HttpRequester
         private HttpClient $httpClient,
         SerializerInterface|null $serializer = null,
     ) {
-        $this->serializer = $serializer;
+        $this->serializer = $serializer ?? (new SerializerFactory())->create();
     }
 
     /**
      * @template T of object
      *
-     * @param string<T> $responseClass
+     * @param class-string<T> $responseClass
      *
      * @return T
      *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
-    public function post(string $path, object $request, string $responseClass): object
+    public function post(string $path, object $request, string $responseClass)
     {
         return $this->mutate('POST', $path, $request, $responseClass);
     }
@@ -39,14 +39,14 @@ readonly class HttpRequester
     /**
      * @template T of object
      *
-     * @param string<T> $responseClass
+     * @param class-string<T> $responseClass
      *
      * @return T
      *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
-    public function put(string $path, object $request, string $responseClass): object
+    public function put(string $path, object $request, string $responseClass)
     {
         return $this->mutate('PUT', $path, $request, $responseClass);
     }
@@ -54,14 +54,14 @@ readonly class HttpRequester
     /**
      * @template T of object
      *
-     * @param string<T> $responseClass
+     * @param class-string<T> $responseClass
      *
      * @return T
      *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
-    private function mutate(string $method, string $path, object $request, string $responseClass): object
+    private function mutate(string $method, string $path, object $request, string $responseClass)
     {
         $json = $this->serializer->serialize($request, 'json');
 
@@ -75,6 +75,9 @@ readonly class HttpRequester
             throw new SendgridApiServerException($e->getMessage(), code: $e->getCode(), previous: $e);
         }
 
-        return $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+        $result = $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+        assert(is_object($result) && is_a($result, $responseClass));
+
+        return $result;
     }
 }
