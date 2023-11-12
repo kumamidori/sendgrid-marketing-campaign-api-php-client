@@ -84,6 +84,7 @@ class SendgridApiRequesterTest extends TestCase
     private function getSUT(): SendgridApiRequester
     {
         return new SendgridApiRequester(
+            'test',
             $this->guzzleClientMock,
         );
     }

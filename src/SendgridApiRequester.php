@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient;
 
-use GuzzleHttp\ClientInterface as HttpClient;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
@@ -12,12 +13,20 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 readonly class SendgridApiRequester
 {
+    private HttpClientInterface $httpClient;
     private SerializerInterface $serializer;
 
     public function __construct(
-        private HttpClient $httpClient,
+        string $apiKey,
+        HttpClientInterface|null $httpClient = null,
         SerializerInterface|null $serializer = null,
     ) {
+        $this->httpClient = $httpClient ?? new HttpClient([
+            'base_uri' => 'https://api.sendgrid.com/v3',
+            'headers' => [
+                'Authorization' => sprintf('Bearer %s', $apiKey),
+            ],
+        ]);
         $this->serializer = $serializer ?? (new SerializerFactory())->create();
     }
 
