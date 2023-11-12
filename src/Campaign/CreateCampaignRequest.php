@@ -6,6 +6,11 @@ namespace Linkage\SendgridMarketingCampaignApiClient\Campaign;
 
 readonly class CreateCampaignRequest
 {
+    /**
+     * @param array<int> $listIds
+     * @param array<int> $segmentIds
+     * @param array<string> $categories
+     */
     public function __construct(
         public string $title,
         public string $subject,

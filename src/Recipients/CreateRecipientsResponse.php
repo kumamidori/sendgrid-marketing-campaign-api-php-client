@@ -6,6 +6,11 @@ namespace Linkage\SendgridMarketingCampaignApiClient\Recipients;
 
 readonly class CreateRecipientsResponse
 {
+    /**
+     * @param array<int> $errorIndices
+     * @param array<int> $unmodifiedIndices
+     * @param array<string> $persistedRecipients
+     */
     public function __construct(
         public int $errorCount,
         public array $errorIndices,
