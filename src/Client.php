@@ -18,7 +18,7 @@ use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsRespon
 readonly class Client implements ClientInterface
 {
     public function __construct(
-        private HttpRequester $requester,
+        private SendgridApiRequester $requester,
     ) {
     }
 

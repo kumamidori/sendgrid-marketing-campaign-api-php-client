@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
 use Symfony\Component\Serializer\SerializerInterface;
 
-readonly class HttpRequester
+readonly class SendgridApiRequester
 {
     private SerializerInterface $serializer;
 
