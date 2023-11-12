@@ -1,5 +1,6 @@
 {
     "name": "linkage/sendgrid-marketing-campaign-api-client",
+    "description": "simple php client for sendgrid marketing campaign apis",
     "type": "library",
     "require": {
         "php": "^8.2",
