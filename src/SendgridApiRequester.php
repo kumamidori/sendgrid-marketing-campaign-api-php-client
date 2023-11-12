@@ -21,6 +21,22 @@ readonly class SendgridApiRequester
         $this->serializer = $serializer ?? (new SerializerFactory())->create();
     }
 
+    public function get(string $path, string $responseClass)
+    {
+        try {
+            $response = $this->httpClient->request('GET', $path);
+        } catch (ClientException $e) {
+            throw new SendgridApiClientException($e->getResponse()->getBody()->getContents(), previous: $e);
+        } catch (ServerException|GuzzleException $e) {
+            throw new SendgridApiServerException($e->getMessage(), code: $e->getCode(), previous: $e);
+        }
+
+        $result = $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+        \assert(\is_object($result) && $result instanceof $responseClass);
+
+        return $result;
+    }
+
     /**
      * @template T of object
      *
