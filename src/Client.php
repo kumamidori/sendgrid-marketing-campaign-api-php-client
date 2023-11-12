@@ -24,4 +24,17 @@ readonly class Client implements ClientInterface
             ContactList\CreateContactListResponse::class,
         );
     }
+
+    /**
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
+     */
+    public function createRecipients(Recipients\CreateRecipientsRequest $request): Recipients\CreateRecipientsResponse
+    {
+        return $this->requester->post(
+            '/contactdb/recipients',
+            $request,
+            Recipients\CreateRecipientsResponse::class,
+        );
+    }
 }
