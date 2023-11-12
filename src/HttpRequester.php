@@ -24,11 +24,10 @@ readonly class HttpRequester
     /**
      * @template T of object
      *
-     * @param string    $path
-     * @param object    $request
      * @param string<T> $responseClass
      *
      * @return T
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -40,11 +39,10 @@ readonly class HttpRequester
     /**
      * @template T of object
      *
-     * @param string    $path
-     * @param object    $request
      * @param string<T> $responseClass
      *
      * @return T
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -55,12 +53,11 @@ readonly class HttpRequester
 
     /**
      * @template T of object
-     * @param string    $method
-     * @param string    $path
-     * @param object    $request
+     *
      * @param string<T> $responseClass
      *
      * @return T
+     *
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
@@ -79,6 +76,5 @@ readonly class HttpRequester
         }
 
         return $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
-
     }
 }

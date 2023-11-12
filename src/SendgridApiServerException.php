@@ -6,5 +6,4 @@ namespace Linkage\SendgridMarketingCampaignApiClient;
 
 class SendgridApiServerException extends \Exception
 {
-
 }
