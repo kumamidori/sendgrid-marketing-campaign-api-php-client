@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient\Recipients;
 
+/**
+ * @extends \ArrayIterator<int, RecipientRequest>
+ */
 class CreateRecipientsRequest extends \ArrayIterator
 {
     /**
