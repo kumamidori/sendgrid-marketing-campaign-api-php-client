@@ -19,26 +19,36 @@ interface ClientInterface
 {
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Create-a-List-POST
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
      */
     public function createContactList(CreateContactListRequest $request): CreateContactListResponse;
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-POST
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
      */
     public function createRecipients(CreateRecipientsRequest $request): CreateRecipientsResponse;
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-to-a-List-POST
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
      */
     public function addMultipleRecipientsToContactList(int $listId, AddMultipleRecipientsRequest $request): AddMultipleRecipientsResponse;
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Create-a-Campaign-POST
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
      */
     public function createCampaign(CreateCampaignRequest $request): CreateCampaignResponse;
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Send-a-Campaign-POST
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
      */
     public function sendCampaign(int $campaignId, SendCampaignRequest $request): SendCampaignResponse;
 }
