@@ -30,7 +30,7 @@ class HttpRequesterTest extends TestCase
         $this->serializer = (new SerializerFactory())->create();
     }
 
-    public function test_post(): void
+    public function testPost(): void
     {
         $this->guzzleClientMock->expects($this->once())
             ->method('request')
@@ -53,7 +53,7 @@ class HttpRequesterTest extends TestCase
         $this->assertEquals(0, $actual->recipientCount);
     }
 
-    public function test_post_clientError(): void
+    public function testPostClientError(): void
     {
         $this->expectException(SendgridApiClientException::class);
 
@@ -69,7 +69,7 @@ class HttpRequesterTest extends TestCase
         );
     }
 
-    public function test_post_serverError(): void
+    public function testPostServerError(): void
     {
         $this->expectException(SendgridApiServerException::class);
 

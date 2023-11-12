@@ -48,7 +48,7 @@ readonly class HttpRequester
      */
     public function put(string $path, object $request, string $responseClass): object
     {
-        return $this->mutate('POST', $path, $request, $responseClass);
+        return $this->mutate('PUT', $path, $request, $responseClass);
     }
 
     /**
