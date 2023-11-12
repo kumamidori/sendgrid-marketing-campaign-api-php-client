@@ -14,10 +14,8 @@ use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListResp
 use Linkage\SendgridMarketingCampaignApiClient\HttpRequester;
 use Linkage\SendgridMarketingCampaignApiClient\SendgridApiClientException;
 use Linkage\SendgridMarketingCampaignApiClient\SendgridApiServerException;
-use Linkage\SendgridMarketingCampaignApiClient\SerializerFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class HttpRequesterTest extends TestCase
 {

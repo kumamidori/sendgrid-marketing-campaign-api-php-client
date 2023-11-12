@@ -76,7 +76,7 @@ readonly class HttpRequester
         }
 
         $result = $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
-        assert(is_object($result) && is_a($result, $responseClass));
+        assert(is_object($result) && $result instanceof $responseClass);
 
         return $result;
     }

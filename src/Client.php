@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient;
 
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListResponse;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsRequest;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsResponse;
+
 readonly class Client implements ClientInterface
 {
     public function __construct(
@@ -16,12 +21,12 @@ readonly class Client implements ClientInterface
      * @throws SendgridApiServerException
      */
     public function createContactList(
-        ContactList\CreateContactListRequest $request,
-    ): ContactList\CreateContactListResponse {
+        CreateContactListRequest $request,
+    ): CreateContactListResponse {
         return $this->requester->post(
             '/contactdb/lists',
             $request,
-            ContactList\CreateContactListResponse::class,
+            CreateContactListResponse::class,
         );
     }
 
@@ -29,12 +34,12 @@ readonly class Client implements ClientInterface
      * @throws SendgridApiClientException
      * @throws SendgridApiServerException
      */
-    public function createRecipients(Recipients\CreateRecipientsRequest $request): Recipients\CreateRecipientsResponse
+    public function createRecipients(CreateRecipientsRequest $request): CreateRecipientsResponse
     {
         return $this->requester->post(
             '/contactdb/recipients',
             $request,
-            Recipients\CreateRecipientsResponse::class,
+            CreateRecipientsResponse::class,
         );
     }
 }

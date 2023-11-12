@@ -4,15 +4,27 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient;
 
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsRequest;
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsResponse;
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
+use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListResponse;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsRequest;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsResponse;
+
 interface ClientInterface
 {
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Create-a-List-POST
      */
-    public function createContactList(ContactList\CreateContactListRequest $request): ContactList\CreateContactListResponse;
+    public function createContactList(CreateContactListRequest $request): CreateContactListResponse;
 
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-POST
      */
-    public function createRecipients(Recipients\CreateRecipientsRequest $request): Recipients\CreateRecipientsResponse;
+    public function createRecipients(CreateRecipientsRequest $request): CreateRecipientsResponse;
+
+    /**
+     * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-to-a-List-POST
+     */
+    public function addMultipleRecipientsToContactList(AddMultipleRecipientsRequest $request): AddMultipleRecipientsResponse;
 }
