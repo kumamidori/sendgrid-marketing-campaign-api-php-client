@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Linkage\SendgridMarketingCampaignApiClient;
 
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignRequest;
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsRequest;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
@@ -45,6 +47,10 @@ readonly class Client implements ClientInterface
         );
     }
 
+    /**
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
+     */
     public function addMultipleRecipientsToContactList(
         int $listId,
         AddMultipleRecipientsRequest $request,
@@ -53,6 +59,19 @@ readonly class Client implements ClientInterface
             sprintf('/contactdb/lists/%d/recipients', $listId),
             $request,
             AddMultipleRecipientsResponse::class,
+        );
+    }
+
+    /**
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
+     */
+    public function createCampaign(CreateCampaignRequest $request): CreateCampaignResponse
+    {
+        return $this->requester->post(
+            '/campaigns',
+            $request,
+            CreateCampaignResponse::class,
         );
     }
 }
