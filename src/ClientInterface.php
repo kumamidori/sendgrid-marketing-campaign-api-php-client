@@ -6,6 +6,8 @@ namespace Linkage\SendgridMarketingCampaignApiClient;
 
 use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignRequest;
 use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignResponse;
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\SendCampaignRequest;
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\SendCampaignResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsRequest;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
@@ -34,4 +36,9 @@ interface ClientInterface
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Create-a-Campaign-POST
      */
     public function createCampaign(CreateCampaignRequest $request): CreateCampaignResponse;
+
+    /**
+     * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/campaigns.html#Send-a-Campaign-POST
+     */
+    public function sendCampaign(int $campaignId, SendCampaignRequest $request): SendCampaignResponse;
 }

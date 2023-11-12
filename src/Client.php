@@ -6,6 +6,8 @@ namespace Linkage\SendgridMarketingCampaignApiClient;
 
 use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignRequest;
 use Linkage\SendgridMarketingCampaignApiClient\Campaign\CreateCampaignResponse;
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\SendCampaignRequest;
+use Linkage\SendgridMarketingCampaignApiClient\Campaign\SendCampaignResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsRequest;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\AddMultipleRecipientsResponse;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
@@ -72,6 +74,19 @@ readonly class Client implements ClientInterface
             '/campaigns',
             $request,
             CreateCampaignResponse::class,
+        );
+    }
+
+    /**
+     * @throws SendgridApiClientException
+     * @throws SendgridApiServerException
+     */
+    public function sendCampaign(int $campaignId, SendCampaignRequest $request): SendCampaignResponse
+    {
+        return $this->requester->post(
+            sprintf('/campaigns/%d/schedules/now', $campaignId),
+            $request,
+            SendCampaignResponse::class,
         );
     }
 }
