@@ -11,13 +11,13 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListRequest;
 use Linkage\SendgridMarketingCampaignApiClient\ContactList\CreateContactListResponse;
-use Linkage\SendgridMarketingCampaignApiClient\HttpRequester;
 use Linkage\SendgridMarketingCampaignApiClient\SendgridApiClientException;
+use Linkage\SendgridMarketingCampaignApiClient\SendgridApiRequester;
 use Linkage\SendgridMarketingCampaignApiClient\SendgridApiServerException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class HttpRequesterTest extends TestCase
+class SendgridApiRequesterTest extends TestCase
 {
     private MockObject&ClientInterface $guzzleClientMock;
 
@@ -81,9 +81,10 @@ class HttpRequesterTest extends TestCase
         );
     }
 
-    private function getSUT(): HttpRequester
+    private function getSUT(): SendgridApiRequester
     {
-        return new HttpRequester(
+        return new SendgridApiRequester(
+            'test',
             $this->guzzleClientMock,
         );
     }
