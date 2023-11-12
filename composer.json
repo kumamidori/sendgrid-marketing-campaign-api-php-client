@@ -40,7 +40,7 @@
         "fix:all": "@php static-analysis-kit fix --risky --rector",
         "fix:rector": "@php static-analysis-kit fix --rector",
         "fix:risky": "@php static-analysis-kit fix --risky",
-        "test": "# To run your tests using this command, you must define your test script in composer.json."
+        "test": "@php vendor/bin/phpunit tests"
     },
     "scripts-descriptions": {
         "analyse": "Analyses code in this project fully.",
