@@ -26,5 +26,5 @@ interface ClientInterface
     /**
      * @see https://sendgrid.kke.co.jp/docs/API_Reference/Web_API_v3/Marketing_Campaigns/contactdb.html#Add-Multiple-Recipients-to-a-List-POST
      */
-    public function addMultipleRecipientsToContactList(AddMultipleRecipientsRequest $request): AddMultipleRecipientsResponse;
+    public function addMultipleRecipientsToContactList(int $listId, AddMultipleRecipientsRequest $request): AddMultipleRecipientsResponse;
 }
