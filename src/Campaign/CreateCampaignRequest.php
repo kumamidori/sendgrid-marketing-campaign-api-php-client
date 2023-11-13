@@ -7,9 +7,9 @@ namespace Linkage\SendgridMarketingCampaignApiClient\Campaign;
 readonly class CreateCampaignRequest
 {
     /**
-     * @param array<int>    $listIds
-     * @param array<int>    $segmentIds
-     * @param array<string> $categories
+     * @param null|array<int>    $listIds
+     * @param null|array<int>    $segmentIds
+     * @param null|array<string> $categories
      */
     public function __construct(
         public string $title,
@@ -18,10 +18,10 @@ readonly class CreateCampaignRequest
         public int $suppressionGroupId,
         public string|null $htmlContent = null,
         public string|null $plainContent = null,
-        public string $customUnsubscribeUrl = '',
-        public array $listIds = [],
-        public array $segmentIds = [],
-        public array $categories = [],
+        public string|null $customUnsubscribeUrl = null,
+        public array|null $listIds = null,
+        public array|null $segmentIds = null,
+        public array|null $categories = null,
         public string|null $ipPool = null,
     ) {
     }
