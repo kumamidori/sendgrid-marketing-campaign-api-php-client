@@ -22,7 +22,7 @@ readonly class SendgridApiRequester
         SerializerInterface|null $serializer = null,
     ) {
         $this->httpClient = $httpClient ?? new HttpClient([
-            'base_uri' => 'https://api.sendgrid.com/v3',
+            'base_uri' => 'https://api.sendgrid.com/v3/',
             'headers' => [
                 'Authorization' => sprintf('Bearer %s', $apiKey),
             ],
@@ -110,7 +110,12 @@ readonly class SendgridApiRequester
             throw new SendgridApiServerException($e->getMessage(), code: $e->getCode(), previous: $e);
         }
 
-        $result = $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+        $responseJson = $response->getBody()->getContents();
+        if ($responseJson === '') {
+            $responseJson = '{}';
+        }
+
+        $result = $this->serializer->deserialize($responseJson, $responseClass, 'json');
         \assert(\is_object($result) && $result instanceof $responseClass);
 
         return $result;
