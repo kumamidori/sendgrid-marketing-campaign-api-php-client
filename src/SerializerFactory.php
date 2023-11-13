@@ -8,6 +8,7 @@ use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
@@ -34,6 +35,9 @@ class SerializerFactory
                         listExtractors: [$reflectionExtractor],
                         typeExtractors: [$reflectionExtractor],
                     ),
+                    defaultContext: [
+                        AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
+                    ]
                 ),
             ],
             [
