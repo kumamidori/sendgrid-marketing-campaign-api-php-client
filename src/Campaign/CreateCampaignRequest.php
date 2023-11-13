@@ -18,7 +18,7 @@ readonly class CreateCampaignRequest
         public int $suppressionGroupId,
         public string|null $htmlContent = null,
         public string|null $plainContent = null,
-        public string $customUnsubscribeUrl = '',
+        public string|null $customUnsubscribeUrl = null,
         public array $listIds = [],
         public array $segmentIds = [],
         public array $categories = [],
