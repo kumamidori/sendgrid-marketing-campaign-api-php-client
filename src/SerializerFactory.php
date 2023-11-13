@@ -37,7 +37,7 @@ class SerializerFactory
                     ),
                     defaultContext: [
                         AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
-                    ]
+                    ],
                 ),
             ],
             [
