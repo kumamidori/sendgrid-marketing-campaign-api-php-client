@@ -30,7 +30,7 @@ readonly class Client implements ClientInterface
         CreateContactListRequest $request,
     ): CreateContactListResponse {
         return $this->requester->post(
-            '/contactdb/lists',
+            'contactdb/lists',
             $request,
             CreateContactListResponse::class,
         );
@@ -43,7 +43,7 @@ readonly class Client implements ClientInterface
     public function createRecipients(CreateRecipientsRequest $request): CreateRecipientsResponse
     {
         return $this->requester->post(
-            '/contactdb/recipients',
+            'contactdb/recipients',
             $request,
             CreateRecipientsResponse::class,
         );
@@ -58,7 +58,7 @@ readonly class Client implements ClientInterface
         AddMultipleRecipientsRequest $request,
     ): AddMultipleRecipientsResponse {
         return $this->requester->post(
-            sprintf('/contactdb/lists/%d/recipients', $listId),
+            sprintf('contactdb/lists/%d/recipients', $listId),
             $request,
             AddMultipleRecipientsResponse::class,
         );
@@ -71,7 +71,7 @@ readonly class Client implements ClientInterface
     public function createCampaign(CreateCampaignRequest $request): CreateCampaignResponse
     {
         return $this->requester->post(
-            '/campaigns',
+            'campaigns',
             $request,
             CreateCampaignResponse::class,
         );
@@ -84,7 +84,7 @@ readonly class Client implements ClientInterface
     public function sendCampaign(int $campaignId, SendCampaignRequest $request): SendCampaignResponse
     {
         return $this->requester->post(
-            sprintf('/campaigns/%d/schedules/now', $campaignId),
+            sprintf('campaigns/%d/schedules/now', $campaignId),
             $request,
             SendCampaignResponse::class,
         );
