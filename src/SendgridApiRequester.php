@@ -25,6 +25,7 @@ readonly class SendgridApiRequester
             'base_uri' => 'https://api.sendgrid.com/v3/',
             'headers' => [
                 'Authorization' => sprintf('Bearer %s', $apiKey),
+                'Content-Type' => 'application/json',
             ],
         ]);
         $this->serializer = $serializer ?? (new SerializerFactory())->create();
