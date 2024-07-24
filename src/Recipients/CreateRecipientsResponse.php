@@ -7,9 +7,10 @@ namespace Linkage\SendgridMarketingCampaignApiClient\Recipients;
 readonly class CreateRecipientsResponse
 {
     /**
-     * @param array<int>    $errorIndices
-     * @param array<int>    $unmodifiedIndices
-     * @param array<string> $persistedRecipients
+     * @param array<int>                                              $errorIndices
+     * @param array<int>                                              $unmodifiedIndices
+     * @param array<string>                                           $persistedRecipients
+     * @param array<array{message: string, errorIndices: array<int>}> $errors
      */
     public function __construct(
         public int $errorCount,
@@ -18,6 +19,7 @@ readonly class CreateRecipientsResponse
         public int $newCount,
         public array $persistedRecipients,
         public int $updatedCount,
+        public array $errors,
     ) {
     }
 }
