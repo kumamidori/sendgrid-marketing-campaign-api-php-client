@@ -9,6 +9,8 @@ use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsResponse;
+use Linkage\SendgridMarketingCampaignApiClient\Recipients\CreateRecipientsResponseError;
 use Symfony\Component\Serializer\SerializerInterface;
 
 readonly class SendgridApiRequester
@@ -17,10 +19,12 @@ readonly class SendgridApiRequester
     private SerializerInterface $serializer;
 
     public function __construct(
-        string $apiKey,
-        HttpClientInterface|null $httpClient = null,
-        SerializerInterface|null $serializer = null,
-    ) {
+        string                                          $apiKey,
+        private CreateRecipientsResponseErrorNormalizer $createRecipientsResponseErrorNormalizer,
+        ?HttpClientInterface                            $httpClient = null,
+        ?SerializerInterface                            $serializer = null,
+    )
+    {
         $this->httpClient = $httpClient ?? new HttpClient([
             'base_uri' => 'https://api.sendgrid.com/v3/',
             'headers' => [
@@ -116,6 +120,21 @@ readonly class SendgridApiRequester
             $responseJson = '{}';
         }
 
+        if ($responseClass === CreateRecipientsResponse::class) {
+            $createRecipientsResponse = $this->serializer->deserialize($responseJson, $responseClass, 'json');
+            \assert(\is_object($createRecipientsResponse));
+
+            $createRecipientsResponseErrorNormalizer = $this->createRecipientsResponseErrorNormalizer;
+            /** @var list<CreateRecipientsResponseError> $errors */
+            $errors = array_map(
+            /** @var array{message: string, error_indices: array<int>} $error */
+                static fn ($error) => $createRecipientsResponseErrorNormalizer->denormalize($error, CreateRecipientsResponseError::class, 'object'),
+                $createRecipientsResponse->getErrors(),
+            );
+            $createRecipientsResponse->setErrors($errors);
+
+            return $createRecipientsResponse;
+        }
         $result = $this->serializer->deserialize($responseJson, $responseClass, 'json');
         \assert(\is_object($result) && $result instanceof $responseClass);
 
